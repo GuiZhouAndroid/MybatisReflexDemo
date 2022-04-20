@@ -9,4 +9,23 @@
         select id, name, email, age from student
     </select>
 
+    <select id="selectById" parameterType="int" resultType="student">
+        select id, name, email, age from student where id = #{id}
+    </select>
+
+    <select id="selectByLikeName" parameterType="string" resultType="student">
+        select id, name, email, age from student where name like '%${lineName}%'
+    </select>
+
+    <insert id="addStudent" parameterType="student">
+        insert into Student(name, email, age) values (#{name},#{email},#{age});
+    </insert>
+
+    <delete id="deleteById" parameterType="int">
+        delete from Student where id =#{id}
+    </delete>
+
+    <update id="updateStudent" parameterType="student">
+        update Student set name = #{name},email = #{email},age = #{age} where id = #{id}
+    </update>
 </mapper>

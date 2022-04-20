@@ -34,9 +34,41 @@ public class StudentTest {
 
     @Test
     public void testGetAll() {
+        // studentMapper是动态代理对象
+        // 根据Mapper接口的方法，动态调用xml映射文件中对应的标签，并执行定义的SQL语句，最终由代理对象返回结果
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
         System.out.println("类型-------------"+studentMapper.getClass());
         List<Student> studentList = studentMapper.getAll();
         studentList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSelectById() {
+        Student student = sqlSession.getMapper(StudentMapper.class).selectById(3);
+        System.out.println(student);
+    }
+
+    @Test
+    public void testSelectByLikeName() {
+        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).selectByLikeName("张");
+        studentList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testAddStudent() {
+        sqlSession.getMapper(StudentMapper.class).addStudent(new Student("李四","qwe",13));
+        sqlSession.commit();
+    }
+
+    @Test
+    public void testDeleteById() {
+        sqlSession.getMapper(StudentMapper.class).deleteById(13);
+        sqlSession.commit();
+    }
+
+    @Test
+    public void testUpdateStudent() {
+        sqlSession.getMapper(StudentMapper.class).updateStudent(new Student(12,"李四","qwe",13));
+        sqlSession.commit();
     }
 }

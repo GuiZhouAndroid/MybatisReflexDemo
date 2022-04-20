@@ -58,7 +58,7 @@ public class StudentTest {
      */
     @Test
     public void testGetById() {
-        System.out.println(sqlSession.selectOne("baoming.getById", 11).toString());
+        System.out.println(sqlSession.selectOne("baoming.getById", 12).toString());
     }
 
     /**
