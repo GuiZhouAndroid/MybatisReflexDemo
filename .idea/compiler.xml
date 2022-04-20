@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="JDKProxyReflex" />
+        <module name="MybatisDemo2" />
+        <module name="MybatisDemo1" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DynamicProxy" target="1.8" />
+      <module name="JDKProxyReflex" target="1.8" />
+      <module name="MybatisDemo1" target="1.8" />
+      <module name="MybatisDemo2" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
