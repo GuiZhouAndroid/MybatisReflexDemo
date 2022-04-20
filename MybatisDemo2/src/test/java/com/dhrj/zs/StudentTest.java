@@ -55,6 +55,12 @@ public class StudentTest {
     }
 
     @Test
+    public void testSelectByLikeNameGood() {
+        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).selectByLikeNameGood("张");
+        studentList.forEach(System.out::println);
+    }
+
+    @Test
     public void testAddStudent() {
         sqlSession.getMapper(StudentMapper.class).addStudent(new Student("李四","qwe",13));
         sqlSession.commit();

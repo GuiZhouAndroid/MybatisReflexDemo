@@ -56,7 +56,9 @@
         class:动态代理方式下的注册
     -->
     <mappers>
-        <mapper class="com.dhrj.zs.mapper.StudentMapper"/>
-    </mappers>
+        <!-- 单个xml注册-->
+        <!-- <mapper class="com.dhrj.zs.mapper.StudentMapper"/>-->
+       <package name="com.dhrj.zs.mapper"/>
+     </mappers>
 
-</configuration>
+ </configuration>

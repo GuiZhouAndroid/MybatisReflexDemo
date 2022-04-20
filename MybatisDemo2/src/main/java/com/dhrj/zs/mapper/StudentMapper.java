@@ -19,6 +19,8 @@ public interface StudentMapper {
 
     List<Student> selectByLikeName(String lineName);
 
+    List<Student> selectByLikeNameGood(String lineName);
+
     int addStudent(Student student);
 
     int deleteById(int id);

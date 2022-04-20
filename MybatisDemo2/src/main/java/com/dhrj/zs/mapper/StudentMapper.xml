@@ -17,6 +17,10 @@
         select id, name, email, age from student where name like '%${lineName}%'
     </select>
 
+    <select id="selectByLikeNameGood" parameterType="string" resultType="student">
+        select id, name, email, age from student where name like concat('%',#{name},'%')
+    </select>
+
     <insert id="addStudent" parameterType="student">
         insert into Student(name, email, age) values (#{name},#{email},#{age});
     </insert>
