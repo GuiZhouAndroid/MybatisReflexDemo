@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,7 +46,7 @@ public class StudentTest {
 
     @Test
     public void testSelectById() {
-        Student student = sqlSession.getMapper(StudentMapper.class).selectById(3);
+        Student student = sqlSession.getMapper(StudentMapper.class).selectById(15);
         System.out.println(student);
     }
 
@@ -83,7 +84,7 @@ public class StudentTest {
 
     @Test
     public void testDeleteById() {
-        sqlSession.getMapper(StudentMapper.class).deleteById(13);
+        sqlSession.getMapper(StudentMapper.class).deleteById(16);
         sqlSession.commit();
     }
 
@@ -115,6 +116,41 @@ public class StudentTest {
         student.setId(18);
         student.setEmail("afe");
         sqlSession.getMapper(StudentMapper.class).updateStudentBySet(student);
+        sqlSession.commit();
+    }
+
+    @Test
+    public void testGetUserInfoByIds() {
+        List<Student> studentList =  sqlSession.getMapper(StudentMapper.class).getUserInfoByIds(new Integer[]{3,8,9});
+        studentList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testDeleteBatchInfoByIds() {
+        int deleteNum =  sqlSession.getMapper(StudentMapper.class).deleteBatchInfoByIds(new Integer[]{3,8,9});
+        System.out.println(deleteNum);
+        sqlSession.commit();
+    }
+
+    @Test
+    public void testAddBatchStudent() {
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(new Student("QWE", "QWE", 1));
+        studentList.add(new Student("ASD", "ZXC", 2));
+        studentList.add(new Student("ZXC", "ZXC", 3));
+        int addNum = sqlSession.getMapper(StudentMapper.class).addBatchStudent(studentList);
+        System.out.println(addNum);
+        sqlSession.commit();
+    }
+
+    @Test
+    public void testUpdateBatchStudentBySet() {
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(new Student(17, "QWE", "QWE", 1));
+        studentList.add(new Student(18, "张松", "ZXC", 2));
+        studentList.add(new Student(19, "ZXC", "ZXC", 3));
+        int updateNum = sqlSession.getMapper(StudentMapper.class).updateBatchStudentBySet(studentList);
+        System.out.println(updateNum);
         sqlSession.commit();
     }
 }

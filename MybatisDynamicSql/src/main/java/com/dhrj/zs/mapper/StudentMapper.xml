@@ -12,45 +12,45 @@
         select <include refid="allColumns"/> from student
     </select>
 
-    <select id="selectById" parameterType="int" resultType="student">
+    <select id="selectById" resultType="student">
         select <include refid="allColumns"/> from student where id = #{id}
     </select>
 
-    <select id="selectByLikeName" parameterType="string" resultType="student">
+    <select id="selectByLikeName" resultType="student">
         select <include refid="allColumns"/> from student where name like '%${lineName}%'
     </select>
 
-    <select id="selectByLikeNameOrGood" parameterType="string" resultType="student">
-        select <include refid="allColumns"/> from student where name like concat('%',#{name},'%')
+    <select id="selectByLikeNameGood" resultType="student">
+        select <include refid="allColumns"/> from Student where name like concat('%',#{name},'%')
     </select>
 
     <select id="selectByLikeColumOrValueGood" resultType="student">
         select <include refid="allColumns"/> from student where ${column} like concat('%',#{value},'%')
     </select>
 
-    <insert id="addStudent" parameterType="student">
+    <insert id="addStudent">
         insert into Student(name, email, age) values (#{name},#{email},#{age})
     </insert>
 
-    <insert id="addStudentBackId" parameterType="student">
+    <insert id="addStudentBackId">
         <selectKey keyProperty="id" resultType="int" order="AFTER">
             select last_insert_id()
         </selectKey>
         insert into Student(name, email, age) values (#{name},#{email},#{age})
     </insert>
 
-    <delete id="deleteById" parameterType="int">
+    <delete id="deleteById">
         delete from Student where id =#{id}
     </delete>
 
-    <update id="updateStudent" parameterType="student">
+    <update id="updateStudent">
         update Student set name = #{name},email = #{email},age = #{age} where id = #{id}
     </update>
 
     <!--    动态SQL
         SQL条件：根据实体类中的成员变量是否有值来决定是否添加条件
     -->
-    <select id="getByConditions" parameterType="student" resultType="student">
+    <select id="getByConditions" resultType="student">
         select <include refid="allColumns"/>
         from Student
         <where>
@@ -66,7 +66,7 @@
         </where>
     </select>
 
-    <update id="updateStudentBySet" parameterType="student">
+    <update id="updateStudentBySet">
         update Student
         <set>
             <if test="name != null and name != ''">
@@ -80,6 +80,58 @@
             </if>
         </set>
             where id =#{id}
+    </update>
+
+    <!--
+        collection = list、map、array
+        item：循环临时变量
+        separator：item之间分隔符
+        open：循环外前括号
+        close：循环外后括号
+    -->
+    <select id="getUserInfoByIds" resultType="student">
+        select
+        <include refid="allColumns"/>
+        from Student
+        where
+        id in
+        <foreach collection="array" item="varId" separator="," open="(" close=")">
+            #{varId}
+        </foreach>
+
+    </select>
+
+    <delete id="deleteBatchInfoByIds">
+        delete from Student where id in
+        <foreach collection="array" item="varIds" separator="," open="(" close=")">
+            #{varIds}
+        </foreach>
+    </delete>
+
+    <insert id="addBatchStudent">
+        insert into Student(name, email, age)
+        values
+        <foreach collection="list" item="varStudent" separator=",">
+            (#{varStudent.name},#{varStudent.email},#{varStudent.age})
+        </foreach>
+    </insert>
+
+    <update id="updateBatchStudentBySet">
+        <foreach collection="list" item="u" separator=";">
+            update Student
+            <set>
+                <if test="u.name != null">
+                    name = #{u.name},
+                </if>
+                <if test="u.email != null">
+                    email = #{u.email},
+                </if>
+                <if test="u.age != null">
+                    age = #{u.age}
+                </if>
+            </set>
+            where id =#{u.id}
+        </foreach>
     </update>
 
 </mapper>

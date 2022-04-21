@@ -20,7 +20,7 @@ public interface StudentMapper {
 
     List<Student> selectByLikeName(String lineName);
 
-    List<Student> selectByLikeNameGood(String lineName);
+    List<Student> selectByLikeNameOrGood(String lineName);
 
     List<Student> selectByLikeColumOrValueGood(@Param("column") String column,@Param("value")String value);
 

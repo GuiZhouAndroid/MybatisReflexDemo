@@ -16,11 +16,11 @@ public interface StudentMapper {
 
     List<Student> getAll();
 
-    Student selectById(int id);
+    Student selectById(Integer id);
 
     List<Student> selectByLikeName(String lineName);
 
-    List<Student> selectByLikeNameGood(String lineName);
+    List<Student> selectByLikeNameGood(String name);
 
     List<Student> selectByLikeColumOrValueGood(@Param("column") String column,@Param("value")String value);
 
@@ -37,4 +37,16 @@ public interface StudentMapper {
 
     //有选择更新
     int updateStudentBySet(Student student);
+
+    //查询多个指定id用户的信息
+    List<Student> getUserInfoByIds(Integer[] arrayIds);
+
+    //根据多个指定id批量删除用户信息
+    int deleteBatchInfoByIds(Integer[] arrayIds);
+
+    //批量添加信息
+    int addBatchStudent(List<Student> studentList);
+
+    //批量有选择更新信息
+    int updateBatchStudentBySet(List<Student> studentList);
 }
