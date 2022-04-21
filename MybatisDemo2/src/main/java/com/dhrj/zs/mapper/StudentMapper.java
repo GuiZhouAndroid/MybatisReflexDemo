@@ -1,6 +1,7 @@
 package com.dhrj.zs.mapper;
 
 import com.dhrj.zs.entity.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public interface StudentMapper {
     List<Student> selectByLikeName(String lineName);
 
     List<Student> selectByLikeNameGood(String lineName);
+
+    List<Student> selectByLikeColumOrValueGood(@Param("column") String column,@Param("value")String value);
 
     int addStudent(Student student);
 

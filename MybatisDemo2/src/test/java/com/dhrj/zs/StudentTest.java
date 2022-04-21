@@ -61,6 +61,12 @@ public class StudentTest {
     }
 
     @Test
+    public void testSelectByLikeColumOrValueGood() {
+        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).selectByLikeColumOrValueGood("email","@");
+        studentList.forEach(System.out::println);
+    }
+
+    @Test
     public void testAddStudent() {
         sqlSession.getMapper(StudentMapper.class).addStudent(new Student("李四","qwe",13));
         sqlSession.commit();
