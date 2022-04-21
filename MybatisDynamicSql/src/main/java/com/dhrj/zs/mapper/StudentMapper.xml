@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dhrj.zs.mapper.StudentMapper">
+
+    <select id="getAll" resultType="student">
+        select id, name, email, age from student
+    </select>
+
+    <select id="selectById" parameterType="int" resultType="student">
+        select id, name, email, age from student where id = #{id}
+    </select>
+
+    <select id="selectByLikeName" parameterType="string" resultType="student">
+        select id, name, email, age from student where name like '%${lineName}%'
+    </select>
+
+    <select id="selectByLikeNameOrGood" parameterType="string" resultType="student">
+        select id, name, email, age from student where name like concat('%',#{name},'%')
+    </select>
+
+    <select id="selectByLikeColumOrValueGood" resultType="student">
+        select id, name, email, age from student where ${column} like concat('%',#{value},'%')
+    </select>
+
+    <insert id="addStudent" parameterType="student">
+        insert into Student(name, email, age) values (#{name},#{email},#{age})
+    </insert>
+
+    <insert id="addStudentBackId" parameterType="student">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into Student(name, email, age) values (#{name},#{email},#{age})
+    </insert>
+
+    <delete id="deleteById" parameterType="int">
+        delete from Student where id =#{id}
+    </delete>
+
+    <update id="updateStudent" parameterType="student">
+        update Student set name = #{name},email = #{email},age = #{age} where id = #{id}
+    </update>
+</mapper>
