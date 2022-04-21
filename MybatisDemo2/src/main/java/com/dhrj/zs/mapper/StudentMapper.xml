@@ -26,7 +26,14 @@
     </select>
 
     <insert id="addStudent" parameterType="student">
-        insert into Student(name, email, age) values (#{name},#{email},#{age});
+        insert into Student(name, email, age) values (#{name},#{email},#{age})
+    </insert>
+
+    <insert id="addStudentBackId" parameterType="student">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into Student(name, email, age) values (#{name},#{email},#{age})
     </insert>
 
     <delete id="deleteById" parameterType="int">

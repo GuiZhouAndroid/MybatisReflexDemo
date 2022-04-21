@@ -73,6 +73,14 @@ public class StudentTest {
     }
 
     @Test
+    public void testAddStudentBackId() {
+        Student student = new Student("李wsdse", "qwe", 13);
+        sqlSession.getMapper(StudentMapper.class).addStudentBackId(student);
+        System.out.println(student);
+        sqlSession.commit();
+    }
+
+    @Test
     public void testDeleteById() {
         sqlSession.getMapper(StudentMapper.class).deleteById(13);
         sqlSession.commit();
