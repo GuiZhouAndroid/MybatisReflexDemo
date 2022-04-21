@@ -98,4 +98,14 @@ public class StudentTest {
         UUID uuid = UUID.randomUUID();
         System.out.println("ZS"+uuid.toString().replace("-","").substring(22)+System.currentTimeMillis());
     }
+
+    @Test
+    public void testGetByConditions() {
+        Student student = new Student();
+        student.setName("ha");
+        student.setEmail("youxiang");
+        student.setAge(100);
+        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).getByConditions(student);
+        studentList.forEach(System.out::println);
+    }
 }

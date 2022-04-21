@@ -5,24 +5,27 @@
 
 <mapper namespace="com.dhrj.zs.mapper.StudentMapper">
 
+    <sql id="allColumns">
+        id, name, email, age
+    </sql>
     <select id="getAll" resultType="student">
-        select id, name, email, age from student
+        select <include refid="allColumns"/> from student
     </select>
 
     <select id="selectById" parameterType="int" resultType="student">
-        select id, name, email, age from student where id = #{id}
+        select <include refid="allColumns"/> from student where id = #{id}
     </select>
 
     <select id="selectByLikeName" parameterType="string" resultType="student">
-        select id, name, email, age from student where name like '%${lineName}%'
+        select <include refid="allColumns"/> from student where name like '%${lineName}%'
     </select>
 
     <select id="selectByLikeNameOrGood" parameterType="string" resultType="student">
-        select id, name, email, age from student where name like concat('%',#{name},'%')
+        select <include refid="allColumns"/> from student where name like concat('%',#{name},'%')
     </select>
 
     <select id="selectByLikeColumOrValueGood" resultType="student">
-        select id, name, email, age from student where ${column} like concat('%',#{value},'%')
+        select <include refid="allColumns"/> from student where ${column} like concat('%',#{value},'%')
     </select>
 
     <insert id="addStudent" parameterType="student">
@@ -43,4 +46,24 @@
     <update id="updateStudent" parameterType="student">
         update Student set name = #{name},email = #{email},age = #{age} where id = #{id}
     </update>
+
+    <!--    动态SQL
+        SQL条件：根据实体类中的成员变量是否有值来决定是否添加条件
+    -->
+    <select id="getByConditions" parameterType="student" resultType="student">
+        select <include refid="allColumns"/>
+        from Student
+        <where>
+            <if test="name !=null and name!= ''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="email !=null and email!= ''">
+                and email = #{email}
+            </if>
+            <if test="age !=null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+
 </mapper>
