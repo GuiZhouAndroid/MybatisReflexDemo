@@ -108,4 +108,13 @@ public class StudentTest {
         List<Student> studentList = sqlSession.getMapper(StudentMapper.class).getByConditions(student);
         studentList.forEach(System.out::println);
     }
+
+    @Test
+    public void testUpdateStudentBySet() {
+        Student student = new Student();
+        student.setId(18);
+        student.setEmail("afe");
+        sqlSession.getMapper(StudentMapper.class).updateStudentBySet(student);
+        sqlSession.commit();
+    }
 }

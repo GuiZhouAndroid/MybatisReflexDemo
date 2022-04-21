@@ -34,4 +34,7 @@ public interface StudentMapper {
 
     //按指定的条件进行多条件查询
     List<Student> getByConditions(Student student);
+
+    //有选择更新
+    int updateStudentBySet(Student student);
 }

@@ -66,4 +66,20 @@
         </where>
     </select>
 
+    <update id="updateStudentBySet" parameterType="student">
+        update Student
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+        </set>
+            where id =#{id}
+    </update>
+
 </mapper>
