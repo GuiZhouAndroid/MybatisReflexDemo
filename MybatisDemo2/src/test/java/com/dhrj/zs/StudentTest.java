@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * created by on 2022/4/20
@@ -90,5 +91,11 @@ public class StudentTest {
     public void testUpdateStudent() {
         sqlSession.getMapper(StudentMapper.class).updateStudent(new Student(12,"李四","qwe",13));
         sqlSession.commit();
+    }
+
+    @Test
+    public void testUUID() {
+        UUID uuid = UUID.randomUUID();
+        System.out.println("ZS"+uuid.toString().replace("-","").substring(22)+System.currentTimeMillis());
     }
 }
