@@ -9,6 +9,7 @@
         <module name="JDKProxyReflex" />
         <module name="MybatisDemo2" />
         <module name="MybatisDynamicSql" />
+        <module name="MybatisDemoOne2Many" />
         <module name="MybatisDemo1" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
       <module name="JDKProxyReflex" target="1.8" />
       <module name="MybatisDemo1" target="1.8" />
       <module name="MybatisDemo2" target="1.8" />
+      <module name="MybatisDemoOne2Many" target="1.8" />
       <module name="MybatisDynamicSql" target="1.8" />
     </bytecodeTargetLevel>
   </component>

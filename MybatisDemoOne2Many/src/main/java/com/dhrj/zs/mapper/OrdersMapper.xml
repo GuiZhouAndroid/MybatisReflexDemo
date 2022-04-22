@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhrj.zs.mapper.OrdersMapper">
+
+    <resultMap id="BaseOrdersOfCustomer" type="ordersBean">
+        <id property="id" column="oid"/>
+        <result property="orderNumber" column="orderNumber"/>
+        <result property="orderPrice" column="orderPrice"/>
+        <association property="customerBean" javaType="customerBean">
+            <id property="id" column="cid"/>
+            <result property="name" column="name"/>
+            <result property="age" column="age"/>
+        </association>
+    </resultMap>
+    <select id="getOrdersOfCustomerByOrdersId" resultMap="BaseOrdersOfCustomer">
+        select o.id oid,
+               customer_id,
+               orderNumber,
+               orderPrice,
+               c.id cid,
+               name,
+               age
+        from orders o
+                 inner join
+             customer c
+             on o.customer_id = c.id
+        where o.id = #{ordersId}
+    </select>
+</mapper>

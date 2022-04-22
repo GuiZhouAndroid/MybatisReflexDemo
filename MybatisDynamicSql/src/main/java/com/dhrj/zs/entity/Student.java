@@ -7,6 +7,7 @@ package com.dhrj.zs.entity;
  * @author ZSAndroid
  * @create 2022-04-20-18:52
  */
+//@Alias("xxxMapper.xml使用<package>标签批量注册的自定义别名，不使用此注解默认为类的驼峰命名")
 public class Student {
     private Integer id;
     private String name;

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/JDKProxyReflex/JDKProxyReflex.iml" filepath="$PROJECT_DIR$/JDKProxyReflex/JDKProxyReflex.iml" />
       <module fileurl="file://$PROJECT_DIR$/MybatisDemo1/MybatisDemo1.iml" filepath="$PROJECT_DIR$/MybatisDemo1/MybatisDemo1.iml" />
       <module fileurl="file://$PROJECT_DIR$/MybatisDemo2/MybatisDemo2.iml" filepath="$PROJECT_DIR$/MybatisDemo2/MybatisDemo2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MybatisDemoOne2Many/MybatisDemoOne2Many.iml" filepath="$PROJECT_DIR$/MybatisDemoOne2Many/MybatisDemoOne2Many.iml" />
       <module fileurl="file://$PROJECT_DIR$/MybatisDynamicSql/MybatisDynamicSql.iml" filepath="$PROJECT_DIR$/MybatisDynamicSql/MybatisDynamicSql.iml" />
       <module fileurl="file://$PROJECT_DIR$/MybatisReflexDemo.iml" filepath="$PROJECT_DIR$/MybatisReflexDemo.iml" />
     </modules>

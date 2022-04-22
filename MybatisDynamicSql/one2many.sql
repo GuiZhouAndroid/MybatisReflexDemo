@@ -16,8 +16,8 @@ create table orders(
 );
 
 insert into orders(customer_id,orderNumber,orderPrice) values(1,'qweqdasdqw1213',100);
-insert into orders(customer_id,orderNumber,orderPrice) values(1,'gdfgfdgwre131',200);
-insert into orders(customer_id,orderNumber,orderPrice) values(1,'vxcvfgfdgfhfd231',300);
+insert into orders(customer_id,orderNumber,orderPrice) values(2,'gdfgfdgwre131',200);
+insert into orders(customer_id,orderNumber,orderPrice) values(3,'vxcvfgfdgfhfd231',300);
 
 select * from customer;
 select * from orders;
