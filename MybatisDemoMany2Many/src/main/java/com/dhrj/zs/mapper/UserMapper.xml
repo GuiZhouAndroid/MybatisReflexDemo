@@ -2,5 +2,47 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dhrj.zs.mapper.CustomerMapper">
+<mapper namespace="com.dhrj.zs.mapper.UserMapper">
+
+    <!--定义User表的resultMap-->
+    <resultMap id="BaseAllUser" type="userBean">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="address" column="address"/>
+        <!--配置角色集合的映射-->
+        <collection property="roleBeanList" ofType="roleBean">
+            <id property="roleId" column="role_id"/>
+            <result property="roleName" column="role_name"/>
+            <result property="roleDescribe" column="role_describe"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAllUser" resultMap="BaseAllUser">
+        select u.user_id, u.username, u.address, r.role_id, r.role_name, r.role_describe
+        from user u
+                 left join
+             user_role ur
+             on
+                 u.user_id = ur.user_id
+                 left join
+             role r
+             on
+                 r.role_id = ur.role_id
+
+    </select>
+
+    <select id="findAllUserByUserId" resultMap="BaseAllUser">
+        select u.user_id, u.username, u.address, r.role_id, r.role_name, r.role_describe
+        from user u
+                 left join
+             user_role ur
+             on
+                 u.user_id = ur.user_id
+                 left join
+             role r
+             on
+                 r.role_id = ur.role_id
+            where
+            u.user_id = #{userId}
+    </select>
 </mapper>

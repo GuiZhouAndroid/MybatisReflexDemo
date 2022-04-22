@@ -1,5 +1,5 @@
 create table user(
-	id int primary key auto_increment,
+	user_id int primary key auto_increment,
 	username varchar(20),
 	address varchar(60)
 );
@@ -8,7 +8,7 @@ insert into user(username,address) values('张松2','贵阳2');
 insert into user(username,address) values('张松3','贵阳3');
 
 create table role(
-	id int primary key auto_increment,
+	role_id int primary key auto_increment,
 	role_name varchar(30),
 	role_describe varchar(30)
 );
@@ -20,8 +20,8 @@ insert into role(role_name,role_describe) values('普通用户','使用对象');
 create table user_role(
 	user_id int,
 	role_id int,
-	foreign key(user_id) references user(id),
-	foreign key(role_id) references role(id)
+	foreign key(user_id) references user(user_id),
+	foreign key(role_id) references role(role_id)
 );
 
 insert into user_role(user_id,role_id) values(1,1);
