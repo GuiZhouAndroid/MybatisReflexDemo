@@ -116,7 +116,7 @@
         </foreach>
     </insert>
 
-    <update id="updateBatchStudentBySet">
+    <update id="updateBatchStudentBySet" parameterType="list">
         <foreach collection="list" item="u" separator=";">
             update Student
             <set>

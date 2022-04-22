@@ -49,4 +49,5 @@ public interface StudentMapper {
 
     //批量有选择更新信息
     int updateBatchStudentBySet(List<Student> studentList);
+
 }

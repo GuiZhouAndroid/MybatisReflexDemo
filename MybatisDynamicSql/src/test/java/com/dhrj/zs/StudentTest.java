@@ -135,9 +135,9 @@ public class StudentTest {
     @Test
     public void testAddBatchStudent() {
         List<Student> studentList = new ArrayList<>();
-        studentList.add(new Student("QWE", "QWE", 1));
-        studentList.add(new Student("ASD", "ZXC", 2));
-        studentList.add(new Student("ZXC", "ZXC", 3));
+        studentList.add(new Student("'QWE'", "'QWE'", 1));
+        studentList.add(new Student("'ASD'", "'ZXC'", 2));
+        studentList.add(new Student("'ZXC'", "'ZXC'", 3));
         int addNum = sqlSession.getMapper(StudentMapper.class).addBatchStudent(studentList);
         System.out.println(addNum);
         sqlSession.commit();
