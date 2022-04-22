@@ -117,21 +117,49 @@
     </insert>
 
     <update id="updateBatchStudentBySet" parameterType="list">
-        <foreach collection="list" item="u" separator=";">
+        <foreach collection="list" item="varStudent" separator=";">
             update Student
             <set>
-                <if test="u.name != null">
-                    name = #{u.name},
+                <if test="varStudent.name != null and varStudent.name != ''">
+                    name = #{varStudent.name},
                 </if>
-                <if test="u.email != null">
-                    email = #{u.email},
+                <if test="varStudent.email != null and varStudent.email != ''">
+                    email = #{varStudent.email},
                 </if>
-                <if test="u.age != null">
-                    age = #{u.age}
+                <if test="varStudent.age != null">
+                    age = #{varStudent.age},
                 </if>
             </set>
-            where id =#{u.id}
+            where id =#{varStudent.id}
         </foreach>
     </update>
 
+    <!--    入参多个值：@Param、arg下标(0起始)、map(key)
+        @Param：where 列名 = #{@Param的名称}
+        @Param：where 列名 = #{arg0} and 列名 = #{arg1}
+        @Param：where 列名 = #{map.put("填入键的名称")}
+    -->
+
+
+    <select id="getOneMapById" parameterType="int" resultType="map">
+        select name, age a from Student where id = #{id}
+    </select>
+
+    <select id="getMoreMap" resultType="map">
+        select <include refid="allColumns"/> from Student;
+    </select>
+
+    <!--    实体类属性名与SQL列名不一致，返回Map集合
+        方式一：将列名的别名重命名为实体类相同的值，where 列名 成员变量
+        方式二：使用<resultMap>手工完成实体对象与数据库之间的映射关系
+    -->
+    <resultMap id="BaseMapOne" type="student">
+        <!--    主键绑定    -->
+        <id column="name" property="name"/>
+        <!--    非主键绑定    -->
+        <result column="age" property="age"/>
+    </resultMap>
+    <select id="getMoreMapByResultMap" resultMap="BaseMapOne">
+        select name, age  from Student
+    </select>
 </mapper>

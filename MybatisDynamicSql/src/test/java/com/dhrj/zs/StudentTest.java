@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -24,9 +25,13 @@ public class StudentTest {
 
     private SqlSession sqlSession;
 
+
+    private StudentMapper studentMapper;
+
     @Before
     public void firstOpenSqlSession() throws Exception {
         sqlSession = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml")).openSession();
+        studentMapper = sqlSession.getMapper(StudentMapper.class);
     }
 
     @After
@@ -46,51 +51,51 @@ public class StudentTest {
 
     @Test
     public void testSelectById() {
-        Student student = sqlSession.getMapper(StudentMapper.class).selectById(15);
+        Student student = studentMapper.selectById(15);
         System.out.println(student);
     }
 
     @Test
     public void testSelectByLikeName() {
-        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).selectByLikeName("张");
+        List<Student> studentList = studentMapper.selectByLikeName("张");
         studentList.forEach(System.out::println);
     }
 
     @Test
     public void testSelectByLikeNameGood() {
-        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).selectByLikeNameGood("张");
+        List<Student> studentList = studentMapper.selectByLikeNameGood("张");
         studentList.forEach(System.out::println);
     }
 
     @Test
     public void testSelectByLikeColumOrValueGood() {
-        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).selectByLikeColumOrValueGood("email","@");
+        List<Student> studentList = studentMapper.selectByLikeColumOrValueGood("email","@");
         studentList.forEach(System.out::println);
     }
 
     @Test
     public void testAddStudent() {
-        sqlSession.getMapper(StudentMapper.class).addStudent(new Student("李四","qwe",13));
+        studentMapper.addStudent(new Student("李四","qwe",13));
         sqlSession.commit();
     }
 
     @Test
     public void testAddStudentBackId() {
         Student student = new Student("李wsdse", "qwe", 13);
-        sqlSession.getMapper(StudentMapper.class).addStudentBackId(student);
+        studentMapper.addStudentBackId(student);
         System.out.println(student);
         sqlSession.commit();
     }
 
     @Test
     public void testDeleteById() {
-        sqlSession.getMapper(StudentMapper.class).deleteById(16);
+        studentMapper.deleteById(16);
         sqlSession.commit();
     }
 
     @Test
     public void testUpdateStudent() {
-        sqlSession.getMapper(StudentMapper.class).updateStudent(new Student(12,"李四","qwe",13));
+        studentMapper.updateStudent(new Student(12,"李四","qwe",13));
         sqlSession.commit();
     }
 
@@ -106,7 +111,7 @@ public class StudentTest {
         student.setName("ha");
         student.setEmail("youxiang");
         student.setAge(100);
-        List<Student> studentList = sqlSession.getMapper(StudentMapper.class).getByConditions(student);
+        List<Student> studentList = studentMapper.getByConditions(student);
         studentList.forEach(System.out::println);
     }
 
@@ -115,19 +120,19 @@ public class StudentTest {
         Student student = new Student();
         student.setId(18);
         student.setEmail("afe");
-        sqlSession.getMapper(StudentMapper.class).updateStudentBySet(student);
+        studentMapper.updateStudentBySet(student);
         sqlSession.commit();
     }
 
     @Test
     public void testGetUserInfoByIds() {
-        List<Student> studentList =  sqlSession.getMapper(StudentMapper.class).getUserInfoByIds(new Integer[]{3,8,9});
+        List<Student> studentList = studentMapper.getUserInfoByIds(new Integer[]{3,8,9});
         studentList.forEach(System.out::println);
     }
 
     @Test
     public void testDeleteBatchInfoByIds() {
-        int deleteNum =  sqlSession.getMapper(StudentMapper.class).deleteBatchInfoByIds(new Integer[]{3,8,9});
+        int deleteNum =  studentMapper.deleteBatchInfoByIds(new Integer[]{3,8,9});
         System.out.println(deleteNum);
         sqlSession.commit();
     }
@@ -138,7 +143,7 @@ public class StudentTest {
         studentList.add(new Student("'QWE'", "'QWE'", 1));
         studentList.add(new Student("'ASD'", "'ZXC'", 2));
         studentList.add(new Student("'ZXC'", "'ZXC'", 3));
-        int addNum = sqlSession.getMapper(StudentMapper.class).addBatchStudent(studentList);
+        int addNum = studentMapper.addBatchStudent(studentList);
         System.out.println(addNum);
         sqlSession.commit();
     }
@@ -149,8 +154,30 @@ public class StudentTest {
         studentList.add(new Student(17, "QWE", "QWE", 1));
         studentList.add(new Student(18, "张松", "ZXC", 2));
         studentList.add(new Student(19, "ZXC", "ZXC", 3));
-        int updateNum = sqlSession.getMapper(StudentMapper.class).updateBatchStudentBySet(studentList);
+        int updateNum = studentMapper.updateBatchStudentBySet(studentList);
         System.out.println(updateNum);
         sqlSession.commit();
+    }
+
+    @Test
+    public void testGetOneMapById() {
+        Map map = studentMapper.getOneMapById(1);
+        System.out.println(map.get("name"));//根据[字段名]提取
+        System.out.println(map.get("a"));//根据[字段别名]提取
+        System.out.println(map);
+    }
+
+    @Test
+    public void testGetMoreMap() {
+        List<Map> mapList = studentMapper.getMoreMap();
+        mapList.forEach(System.out::println);
+        //System.out.println(mapList);
+    }
+
+    @Test
+    public void testGetMoreMapByResultMap() {
+        List<Student> mapList = studentMapper.getMoreMapByResultMap();
+        mapList.forEach(System.out::println);
+        //System.out.println(mapList);
     }
 }

@@ -4,6 +4,7 @@ import com.dhrj.zs.entity.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * created by on 2022/4/20
@@ -22,7 +23,7 @@ public interface StudentMapper {
 
     List<Student> selectByLikeNameGood(String name);
 
-    List<Student> selectByLikeColumOrValueGood(@Param("column") String column,@Param("value")String value);
+    List<Student> selectByLikeColumOrValueGood(@Param("column") String column, @Param("value") String value);
 
     int addStudent(Student student);
 
@@ -50,4 +51,12 @@ public interface StudentMapper {
     //批量有选择更新信息
     int updateBatchStudentBySet(List<Student> studentList);
 
+    //根据指定id返回一条信息，存入Map集合中
+    Map getOneMapById(Integer id);
+
+    //根据，存入Map集合中
+    List<Map> getMoreMap();
+
+    //根据，存入Map集合中
+    List<Student> getMoreMapByResultMap();
 }
