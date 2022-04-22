@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/MybatisDynamicSql/pom.xml" />
         <option value="$PROJECT_DIR$/MybatisDemoOne2Many/pom.xml" />
         <option value="$PROJECT_DIR$/MybatisDemoOne2One/pom.xml" />
+        <option value="$PROJECT_DIR$/MybatisDemoMany2Many/pom.xml" />
       </list>
     </option>
   </component>
