@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhrj.zs.mapper.ClassMapper">
+
+    <resultMap id="BaseClassMap" type="classBean">
+        <id property="id" column="cid"/>
+        <result property="name" column="cname"/>
+        <association property="teacherBean" javaType="teacherBean">
+            <id property="id" column="tid"/>
+            <result property="name" column="tname"/>
+            <result property="age" column="tage"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getClassAndTerByClassId" resultMap="BaseClassMap">
+        select c.id cid, c.name cname, t.id tid, t.name tname, t.age tage
+        from class c
+                 inner join teacher t on c.id = t.class_id
+        where c.id = #{classId}
+    </select>
+
+</mapper>

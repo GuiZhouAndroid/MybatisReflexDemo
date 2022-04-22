@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * created by on 2022/4/22
  * 描述：客户实体类
- * 一对多： 一方持有多方的集合
+ * 一对多：一方持有多方的集合 ，一方对应标签<association></association>，多方对比标签<resultMap></resultMap>
  *
  * @author ZSAndroid
  * @create 2022-04-22-11:45

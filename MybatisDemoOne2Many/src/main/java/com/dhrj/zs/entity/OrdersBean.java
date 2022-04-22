@@ -3,7 +3,7 @@ package com.dhrj.zs.entity;
 /**
  * created by on 2022/4/22
  * 描述：订单实体类
- * 多对一： 多方持有一方的对象
+ * 多对一：多方持有一方的对象，多方对比标签<resultMap></resultMap>，一方对应标签<association></association>
  *
  * @author ZSAndroid
  * @create 2022-04-22-11:45

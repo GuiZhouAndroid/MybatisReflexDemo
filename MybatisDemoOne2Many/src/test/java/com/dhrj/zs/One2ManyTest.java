@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author ZSAndroid
  * @create 2022-04-20-19:10
  */
-public class StudentTest {
+public class One2ManyTest {
 
     private SqlSession sqlSession;
 
@@ -42,6 +42,6 @@ public class StudentTest {
 
     @Test
     public void testGetOrdersOfCustomerByOrdersId() {
-        System.out.println(ordersMapper.getOrdersOfCustomerByOrdersId(3));
+        System.out.println(ordersMapper.getOrdersOfCustomerByOrdersId(1));
     }
 }
