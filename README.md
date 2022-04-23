@@ -1,8 +1,13 @@
 # MybatisReflexDemo
 Java反射+动态代理 与  Mybatis框架学习自建项目
 
-***多表关联实体与标签对应关系分析***
-（1）一对一：添加对方的对象（A实体有B实例对象 + B实体有A实例对象），使用<resuletMap>+<association>标签联合包裹。（根据查询业务改变标签集合内外层的映射）
-（2）一对多：一方实体添加多方实体的List对象集合，使用<resuletMap>+<collection>标签联合包裹。（一方实体采用<resuletMap>标签包裹，多方实体采用<collection>标签包裹）
-（3）多对一：多方实体添加一方实体的对象，使用<resuletMap>+<association>标签联合包裹。（多方实体采用<resuletMap>标签包裹，一方实体采用<association>标签包裹）
-（4）多对多：多方实体添加多方实体的List对象集合，使用<resuletMap>+<collection>标签联合包裹。（多方实体采用<resuletMap>标签包裹，多方实体采用<collection>标签包裹，根据查询业务改变标签集合内外层的映射）
+ORM (object Relational Mapping)：对象关系映射MyBatis框架是ORM非常优秀的框架，java语言中以对象的方式操作数据，存到数据库中是以表的方式进行存储，对象中的成员变量与表中的列之间的数据互换称为映射。整个这套操作就是ORM。
+***以下分析不代表全部，使用什么连接方式，取决于业务需求和实体之间的关系（仅供参考）***
+（1）一对一：添加对方的对象（A实体有B对象 + B实体有A对象），使用<resuletMap>和<association>标签联合包裹映射数据。
+        定义SQL：“A为主表，B为副表”或者“B为主表，A为副表”时，均使用内连接关联，不会影响查询数据的丢失。主表紧接from后面。
+（2）一对多：一方实体添加多方实体的List对象集合，一方实体采用<resuletMap>标签包裹映射数据，多方实体采用<collection>标签包裹映射数据。
+        定义SQL：“一方为主表，多方为副表”，使用左连接。例如“from 一方 left join 多方 on 条件 ”，可以避免因副表没有主表数据而导致查询结果丢失掉主表的数据。（举反例：如果使用内连接，副表没有主标数据，select的并集信息就是null值，集合就为null【不包含主表数据】）主表紧接from后面。
+（3）多对一：多方实体添加一方实体的对象，多方实体采用<resuletMap>标签包裹映射数据，一方实体采用<association>标签包裹映射数据。
+        定义SQL：“多方为主表，一方为副表”，使用内连接，例如“from 多方 inner join 一方 on 条件 ”，副表有数据，那么与它对应的主表必然有数据，就会查询并集数据，返回封装有数据集合。主表紧接from后面。
+（4）多对多：多方A实体添加多方B实体的List对象集合，多方A采用<resuletMap>标签包裹映射数据，多方B采用<collection>标签包裹映射数据。
+       定义SQL：“多方A为主表，多方B为副表”，使用左连接，例如“ from 多方A left join 多方B on 条件 ”。“多方B为主表，多方A为副表”，使用左连接，例如“from 多方B left join 多方A on 条件 ”。主表紧接from后面。
