@@ -8,8 +8,8 @@ package org.dhrj.zs.service;
  * @create 2022-04-13-10:53
  */
 public interface Service {
-
+    //唱歌
     void sing();
-
-    String show (int age);
+    //展示年龄
+    String showAge (int age);
 }

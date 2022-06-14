@@ -13,6 +13,7 @@ import org.junit.Test;
  * @author ZSAndroid
  * @create 2022-04-18-10:55
  */
+//JDK动态代理测试类
 public class ProxyTest {
 
     @Test
@@ -26,14 +27,14 @@ public class ProxyTest {
     public void test2() {
         ProxyFactory proxyFactory = new ProxyFactory(new SuperSatZhou());
         Service agent = (Service) proxyFactory.getAgent();
-        System.out.println(agent.show(25));
+        System.out.println(agent.showAge(25));
     }
 
     @Test
     public void test3() {
         ProxyFactory proxyFactory = new ProxyFactory(new SuperStarLiu());
         Service agent = (Service) proxyFactory.getAgent();
-        System.out.println(agent.show(50));
+        System.out.println(agent.showAge(50));
         System.out.println(agent.getClass());//动态代理类型：class com.sun.proxy.$Proxy2
     }
 }
