@@ -17,5 +17,7 @@
     <file url="file://$PROJECT_DIR$/MybatisDemoOne2One/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MybatisDynamicSql/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MybatisDynamicSql/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCglibProxy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCglibProxy/src/main/resources" charset="UTF-8" />
   </component>
 </project>

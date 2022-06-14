@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FindBugsConfigurable">
     <option name="make" value="true" />
     <option name="effort" value="default" />
@@ -17,6 +18,7 @@
         <option value="$PROJECT_DIR$/MybatisDemoOne2Many/pom.xml" />
         <option value="$PROJECT_DIR$/MybatisDemoOne2One/pom.xml" />
         <option value="$PROJECT_DIR$/MybatisDemoMany2Many/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCglibProxy/pom.xml" />
       </list>
     </option>
   </component>

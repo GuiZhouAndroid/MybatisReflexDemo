@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JDKProxyReflex" />
+        <module name="SpringCglibProxy" />
         <module name="MybatisDemoOne2Many" />
         <module name="MybatisDemoOne2One" />
         <module name="MybatisDemo2" />
@@ -16,15 +17,5 @@
         <module name="MybatisDemo1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="DynamicProxy" target="1.8" />
-      <module name="JDKProxyReflex" target="1.8" />
-      <module name="MybatisDemo1" target="1.8" />
-      <module name="MybatisDemo2" target="1.8" />
-      <module name="MybatisDemoMany2Many" target="1.8" />
-      <module name="MybatisDemoOne2Many" target="1.8" />
-      <module name="MybatisDemoOne2One" target="1.8" />
-      <module name="MybatisDynamicSql" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
